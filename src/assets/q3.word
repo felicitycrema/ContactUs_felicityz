@@ -1,0 +1,149 @@
+o create a simple React-based website with a "Contact Us" form that stores data in Firebase, follow these steps:
+
+Step-by-Step Implementation
+1. Set up Firebase
+Go to Firebase Console.
+Create a new project.
+In the "Build" section, go to "Realtime Database" and create a database.
+In "Project Settings," select "Add App" to get the Firebase configuration keys.
+2. Install Firebase in Your React App
+Run this command in your project directory to install Firebase:
+
+bash
+Copy code
+npm install firebase
+3. Create Firebase Configuration
+In the src folder, create a firebaseConfig.js file:
+
+javascript
+Copy code
+import { initializeApp } from "firebase/app";
+import { getDatabase } from "firebase/database";
+
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+  databaseURL: "https://YOUR_PROJECT_ID.firebaseio.com",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_PROJECT_ID.appspot.com",
+  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+  appId: "YOUR_APP_ID",
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+export { db };
+
+4. Create the Contact Us Form
+In the src folder, create a ContactUs.js component:
+
+javascript
+Copy code
+import React, { useState } from "react";
+import { ref, set } from "firebase/database";
+import { db } from "./firebaseConfig"; // Import Firebase configuration
+
+const ContactUs = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    number: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Create a unique key for each submission
+    const contactRef = ref(db, "contacts/" + Date.now());
+
+    set(contactRef, formData)
+      .then(() => {
+        alert("Data stored successfully!");
+        setFormData({ name: "", email: "", number: "" });
+      })
+      .catch((error) => {
+        console.error("Error storing data:", error);
+      });
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <div>
+        <label>Name:</label>
+        <input
+          type="text"
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+          required
+        />
+      </div>
+      <div>
+        <label>Email:</label>
+        <input
+          type="email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          required
+        />
+      </div>
+      <div>
+        <label>Phone Number:</label>
+        <input
+          type="text"
+          name="number"
+          value={formData.number}
+          onChange={handleChange}
+          required
+        />
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  );
+};
+
+export default ContactUs;
+5. Link the Form to the App
+Update your App.js to render the ContactUs component:
+
+javascript
+Copy code
+import React from "react";
+import ContactUs from "./ContactUs";
+
+function App() {
+  return (
+    <div className="App">
+      <h1>Contact Us</h1>
+      <ContactUs />
+    </div>
+  );
+}
+
+export default App;
+6. Underlying Technologies
+React: Frontend framework for creating dynamic UIs.
+Firebase Realtime Database: NoSQL cloud database used to store and sync data in real-time.
+Firebase SDK: JavaScript library that allows connection between the React frontend and Firebase's Realtime Database.
+HTML Forms: Used in React to take user input, such as name, email, and phone number.
+Firebase Functions (Optional): Serverless backend for processing any additional logic (if required).
+7. How Firebase and React Work Together
+React handles the frontend, providing forms and UI elements.
+Firebase SDK is integrated into React, allowing the frontend to communicate with the Firebase database.
+When the form is submitted, Firebase writes the data to the Realtime Database, storing the user’s input.
+This setup creates a fully functioning, database-driven website using React and Firebase.
+
+Explanation:(ContactUs.css)
+Form Styling: The form is centered with max-width: 400px, padding, and a light background with rounded corners.
+Labels: Made bold to stand out from the input fields.
+Inputs: Given full width, padding, and a focus effect to change the border color when active.
+Button: Styled with a blue background, white text, and a hover effect that darkens the background.
+Media Query: A responsive design for screens smaller than 600px, adjusting padding and font sizes.

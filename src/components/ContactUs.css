@@ -1,0 +1,167 @@
+.contact {
+  display: flex;
+  height: 75vh;
+  width: 100vw;
+  position: relative;
+  align-items: center;
+  cursor: pointer;
+  background: url("https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTEyNjE4NTg5MzIzNjI0NjI2MA%3D%3D/original/e6b26733-2c15-47d9-b097-6968b39bb697.jpeg?im_w=1200")
+    repeat center;
+  background-color: rgb(14, 14, 14);
+  transition: background-color 300ms;
+  border-top: none;
+  border-bottom: 1px solid lightgrey;
+}
+
+.contact_titleButton.contact_titleButton {
+  background-color: white;
+  width: 100vw;
+  font-weight: 900;
+  color: #ff7779;
+  text-transform: inherit;
+  position: absolute;
+  top: 0;
+  font-size: 1.5rem;
+  display:flex;
+  align-items: center;
+  }
+
+.contact_info {
+  background-color:  rgb(13 30 58);
+  color: #ccc;
+  margin-left: 20px;
+  height: 62vh;
+  /* margin-top: 100px; */
+  padding-bottom: 16px;
+  width:400px;
+  padding-top: 56vh;
+  padding-left: 30px;
+  padding-right: 50px;
+  text-align:left;
+}
+
+form {
+   max-width: 400px;
+  margin-left: 20px;
+  margin-top: 30vh;
+  margin-bottom: 20px;
+  padding-top: 0px;
+  border: none;
+  text-align: left;
+  position:absolute;
+  top:0; 
+  left:0;
+  align-items: center;
+  background-color: rgb(13 30 58);
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius:4px;
+}
+
+label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 20px;
+  gap: 8px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+input[type="text"],
+input[type="email"],
+textarea,
+select,
+.city.star {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border: 5px solid rgb(13 30 58);
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: rgb(13 30 58);
+  color: #ccc;
+  cursor: pointer;
+}
+
+.city {
+  display: flex;
+  align-items: center;
+  text-align: left;
+  border-bottom: 1px solid #ccc;
+  gap: 5px;
+}
+
+Button.submit {
+  background-color: #ff7779;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 900;
+  cursor: pointer;
+  max-width: 100%;
+  cursor: pointer;
+  align-items: center;
+  margin-bottom: 20px;
+  margin-left: 20px;
+}
+
+Button.submit:hover {
+  background-color: #d4a5a5;
+}
+
+/* Style for required fields */
+span.star,
+.city.star {
+  color: #ff7779;
+  margin-left: 5px;
+  font-weight: bold;
+}
+
+/* Media query to break at mobile devices */
+@media screen and (max-width: 768px) {
+  form {
+    padding: 15px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  textarea {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  button.submit {
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  label {
+    font-size: 14px;
+  }
+}
+
+/* Extra small screens (max-width: 480px) */
+@media screen and (max-width: 480px) {
+  form {
+    padding: 10px;
+    margin: 0 10px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  textarea {
+    font-size: 12px;
+    padding: 6px;
+  }
+
+  button.submit {
+    font-size: 12px;
+  }
+}
